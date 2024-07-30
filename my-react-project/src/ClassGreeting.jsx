@@ -28,16 +28,20 @@ class ClassGreeting extends Component {
     // Setting state of name 
     this.state = {
       name: this.props.initialName,
-      pet: 'Turtle'
+      pet: 'Turtle',
+      isLoggedIn: false
     }
 
     // This line binds the changeName method to the current instance of the ClassGreeting component
     // Without this line of code, the changeName method would not be able to actually change the state  
     // The purpose of the bind method is to ensure that the this keyword inside the changeName method refers to the component instance itself, rather than being undefined or pointing to something else.
-    this.changeName = this.changeName.bind(this)
+    this.changeName = this.changeName.bind(this); 
 
     // Bind the new method 
-    this.changePet = this.changePet.bind(this)
+    this.changePet = this.changePet.bind(this); 
+
+    // Bind the toggleLogin to the current instance of the component
+    this.toggleLogin = this.toggleLogin.bind(this);
 
   }
 
@@ -50,22 +54,42 @@ class ClassGreeting extends Component {
   changePet(){
     this.setState({pet: 'dog'})
   }
+
+  toggleLogin() {
+    this.setState(prevState => ({
+      isLoggedIn: !prevState.isLoggedIn
+    })); 
+  }
   
 
   render(){
 
     // Access state - name
-    // const name = this.state.name; 
-    const pet = this.state.pet;
+    // const name = this.name
+    const { name, pet, isLoggedIn } = this.state; 
 
     // Naming our paragraph tag to GRAB as te selected element in CSS from styles.css -> className attribute instead of Style attribute 
     return (
       <div>
-        <p className="greeting">Hello, {this.state.name}! He owns a {pet}. This is a class-based greeting</p>
+        {/* If logged in = hello name, you own pet */}
+        {/* If not logged in = welcome, please login */}
+        { isLoggedIn ?(
+            <p>Hello {name}, you own {pet}</p>
+        ):( 
+            <p>Welcome stranger! Please log in</p>
+        )}
 
-        <button onClick={this.changeName}>Change Name</button>
+        {/* Login and out buttons (2 buttons) */}
+        {!isLoggedIn ? (
+        <button onClick={this.toggleLogin}>Log In</button>
+        ) : (
+          <button onClick={this.toggleLogin}>Log Out</button>
+        )}
 
-        <button onClick={this.changePet}>Change Pet</button>
+
+        {/* <p className="greeting">Hello, {name}! He owns a {pet}. This is a class-based greeting</p> */}
+        {/* <button onClick={this.changeName}>Change Name</button> */}
+        {/* <button onClick={this.changePet}>Change Pet</button> */}
       </div>
     )
   }

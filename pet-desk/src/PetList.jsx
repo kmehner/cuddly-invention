@@ -2,6 +2,7 @@
 
 // Import React & Component from react 
 import React, { Component } from "react";
+import Pet from "./Pet";
 import '../src/PetStyles.css'; 
 
 class PetList extends Component {
@@ -34,6 +35,8 @@ class PetList extends Component {
       }
     ]
 
+    const filteredPets = pets.filter(pet => pet.name !== "Lassie");
+
     // Return the list of pets as JSX 
     return (
       <div className="pet-list">
@@ -42,9 +45,9 @@ class PetList extends Component {
         {/* List out pets */}
         {/* pets.map((pet) => (tag of content you want to return)) */}
         <ul>
-
-          {pets.map((pet) => (
-            <li key={pet.id}>{pet.name} the {pet.type} and their owner {pet.owner}</li>
+          
+          {filteredPets.map((pet) => (
+            <Pet key={pet.id} name={pet.name} type={pet.type} owner={pet.owner}/>
           ))}
 
         </ul>

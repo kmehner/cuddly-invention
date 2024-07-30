@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <h1>Hello World</h1>
-      <Greeting/>
+      <Greeting customMessage="Hello there"/>
       <ClassGreeting />
     </div>
   )
