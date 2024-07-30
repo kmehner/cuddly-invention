@@ -1,0 +1,15 @@
+/* const greetingStyle = {
+  color: "blue",
+  backgroundColor: "lightblue", 
+  padding: "10px",
+  fontFamily: "Arial",
+  textAlign: "center"
+}; */
+
+.greeting {
+  color: blue;
+  background-color: lightblue;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}

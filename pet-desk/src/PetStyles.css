@@ -1,0 +1,14 @@
+
+.pet-list {
+  background-color: white;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
