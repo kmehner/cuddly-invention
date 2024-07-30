@@ -1,28 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Greeting.module.css"
 
 // FUNCTIONAL GREETING 
-function Greeting(){
+const Greeting = (props) => {
+  // const [ var, methodToUpdateVar] = useState(initialValue)
+  const [name, setName] = useState(props.initialName); 
+  const [pet, setPet] = useState(props.initialPet); 
 
-  // Adding inline styling 
-  const greetingStyle = {
-    color: "blue",
-    backgroundColor: "lightblue", 
-    padding: "10px",
-    fontFamily: "Arial",
-    textAlign: "center"
+  var favoriteAnimal = 'Bird'; 
+
+  const changeName = () => {
+    setName('Jane Doe'); 
   };
 
-  // Adding inline styling using Style tag to add greetingStyle 
-  // return <p style={greetingStyle}>Welcome to the world of React! This is a functional component.</p>
+  const changePet = () => {
+    setPet("turkey"); 
+  }
 
-  // Using ClassName to identify paragraph tag for our CSS using ClassName tag 
+  const updateFavoriteAnimal = () => {
+    console.log("Update favorite animal,", favoriteAnimal); // bird 
+    favoriteAnimal = 'Cat';
+    console.log(favoriteAnimal); // cat 
+  }
+ 
   return (
-    <>
-      <p className={styles.greeting}>Welcome to the world of React! This is a functional component.</p> 
-      <p className={styles.farewell}>Farewell</p>
-    </>
+
+    <div>
+      <p className={styles.greeting}>Welcome, {name} to the world of React! This is a functional component.</p> 
+      <p>He owns a {pet}</p>
+      <p>His favorite animal is {favoriteAnimal}</p>
+      <button onClick={changeName}>Change Name - Functional</button>
+      <button onClick={changePet}>Change Pet</button>
+      <button onClick={updateFavoriteAnimal}>Update favorite animal</button>
+    </div>
   )
+}
+
+Greeting.defaultProps = {
+  initialName: 'John Doe',
+  initialPet: 'dog'
 }
 
 export default Greeting; // Allowing our application to access the greeting component
